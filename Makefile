@@ -1,10 +1,13 @@
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -Wimplicit-function-declaration
 
-FILES = main.c
-OUT_EXE = main
+all: server client
 
-build: $(FILES)
-	$(CC) $(CFLAGS) $(FILES) -o $(OUT_EXE)
+server: server.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+client: client.c
+	$(CC) $(CFLAGS) -o $@ $^
+
 clean:
-	-rm -f *.o $(OUT_EXE)
+	-rm -f *.o server client 
