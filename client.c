@@ -2,7 +2,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
-
+#include <string.h>
 int
 main(int argc, char *argv[]){
 
@@ -37,7 +37,7 @@ main(int argc, char *argv[]){
   /* retrieve the port number for connecting */
   simplePort = atoi(argv[2]);
 
-  bzero(&simpleServer, sizeof(simpleServer));
+  memset(&simpleServer, 0, sizeof(simpleServer));
   simpleServer.sin_family = AF_INET;
   inet_addr(argv[1], &simpleServer.sin_addr.s_addr);
   simpleServer.sin_port = htons(simplePort);
@@ -60,7 +60,7 @@ main(int argc, char *argv[]){
   }
 
   /* get the message from the server */
-  returnStatus = read(simpleSocket, buffer, sizeof(buffer));
+  returnStatus = recv(simpleSocket, buffer, sizeof(buffer), 0);
 
   if ( returnStatus > 0 ) {
     

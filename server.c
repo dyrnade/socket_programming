@@ -117,7 +117,7 @@ main(int argc, char *argv[]){
 
     /* handle the connection request */
     /* write out our message to the client */
-    write(simpleChildSocket, MESSAGE, strlen(MESSAGE));
+    send(simpleChildSocket, MESSAGE, strlen(MESSAGE), 0);
     close(simpleChildSocket);
 
   }
